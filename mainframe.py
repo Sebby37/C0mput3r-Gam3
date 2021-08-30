@@ -2,7 +2,9 @@
 
 from time import sleep
 
-def printStr(string):
+def printStr(string, delay = 0.02, newline = False):
     for c in string:
-        sleep(0.02)
+        sleep(delay)
         print(c, end='')
+    if newline:
+        print("")
