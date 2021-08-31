@@ -2,7 +2,7 @@
 import os
 from time import sleep
 
-def printStr(input: str) -> str:
+def print_str(input: str) -> str:
     for c in input:
         sleep(0.02)
         print(c, end='')
@@ -10,27 +10,27 @@ def printStr(input: str) -> str:
 
 # just the introduction
 def initBios() -> None:
-    printStr("......... \n")
-    printStr("Oracle Terminal ")
-    printStr("-> ")
-    printStr("Boot sequence initiated! \n")
-    printStr("Booting signal GREEN")
-    printStr("." * 3)
+    print_str("......... \n")
+    print_str("Oracle Terminal ")
+    print_str("-> ")
+    print_str("Boot sequence initiated! \n")
+    print_str("Booting signal GREEN")
+    print_str("." * 3)
     print()
-    printStr("[")
+    print_str("[")
     for i in range(30):
-        printStr("=")
-    printStr("=>] \n")
-    printStr("Reboot requested... \n")
+        print_str("=")
+    print_str("=>] \n")
+    print_str("Reboot requested... \n")
     reboot()
 
-    printStr("System reboot successful. \n Welcome user. \n")
+    print_str("System reboot successful. \n Welcome user. \n")
 
 def reboot() -> None:
-    printStr("***SYSTEM:: REBOOT INITIATED*** \n\n\n")
+    print_str("***SYSTEM:: REBOOT INITIATED*** \n\n\n")
     if os.name == "nt":
         os.system('cls')
     else:
         os.system('clear') # for linux users
 
-    printStr("\n...")
+    print_str("\n...")

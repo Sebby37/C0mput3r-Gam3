@@ -8,13 +8,13 @@ from PIL import ImageTk, Image
 # Put into class
 
 # functions
-def updateGIF(count) -> None:  
+def update_GIF(count) -> None:  
     imgR = img[count]
     count += 1
     if count == frames:
         count = 0 # reset to first frame
     imgPanel.configure(image=imgR)
-    GUI.after(round(1000 / frames), lambda: updateGIF(count)) #error on this line
+    GUI.after(round(1000 / frames), lambda: update_GIF(count)) #error on this line
 
 # create tkinter instance
 GUI = tk.Tk()
@@ -48,7 +48,7 @@ img = [PhotoImage(file=path,format = f'gif -index {i}') for i in range(frames)]
 
 count = 0
 
-updateGIF(count)
+update_GIF(count)
 
 imgPanel.pack(side = "bottom", fill = "both", expand = "yes")
 
