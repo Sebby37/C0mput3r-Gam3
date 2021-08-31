@@ -2,10 +2,23 @@
 import os
 from time import sleep
 
+class bcolors: # for printing color to termial
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
+
 def print_str(input: str) -> str:
     for c in input:
         sleep(0.02)
-        print(c, end='')
+        print(bcolors.OKGREEN, c, end='')
     return input
 
 # just the introduction
@@ -34,3 +47,4 @@ def _reboot() -> None:
         os.system('clear') # for linux users
 
     print_str("\n...")
+
