@@ -7,12 +7,12 @@ from PIL import ImageTk, Image
 
 
 # get path
-currPath = os.getcwd()
+currPath: str = os.getcwd()
 
 if os.name == "nt":
-    file: str = currPath + "\\assets\\mrhouse2.png" # put image here
+    file: str = currPath + "\\assets\\mantest.png" # put image here
 else:
-    file: str = currPath + "/assets"
+    file: str = currPath + "/assets/mantest.png"
 
 
 class GUI(tk.Tk):
@@ -25,23 +25,24 @@ class GUI(tk.Tk):
         # initilise components
         self.canvas = Canvas(self, width=500, height=500) # set to window dimensions
 
-    def renderComponents(self):
+    def _rendercomponents(self) -> None:
         self.img = ImageTk.PhotoImage(Image.open(file))
+        #self.imgR = self.img.resize((400, 400), Image.ANTIALIAS)
         self.canvas.create_image(0,0, image=self.img, anchor=NW)
 
-    def drawComponents(self):
+    def _drawcomponents(self) -> None:
         self.canvas.pack()
 
-    def start(self):
+    def _start(self) -> None:
         self.mainloop()
         #print("hi")
 
 
 if __name__ == "__main__":
     App = GUI()
-    App.renderComponents()
-    App.drawComponents()
-    App.start()
+    App._rendercomponents()
+    App._drawcomponents()
+    App._start()
 
 
 
