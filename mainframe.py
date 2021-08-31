@@ -13,12 +13,10 @@ class bcolors: # for printing color to termial
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-
-
 def print_str(input: str) -> str:
     for c in input:
         sleep(0.02)
-        print(bcolors.OKGREEN, c, end='')
+        print(bcolors.OKGREEN + bcolors.BOLD + c, end='')
     return input
 
 # just the introduction
