@@ -1,57 +1,44 @@
 import os
 import tkinter as tk
-from tkinter import *
-from PIL import ImageTk, Image
+from tkinter import Canvas, PhotoImage
 
 
-# TODO:
-# Put into class
+# get path
+currPath = os.getcwd()
 
-# functions
-def updateGIF(count) -> None:  
-    imgR = img[count]
-    count += 1
-    if count == frames:
-        count = 0 # reset to first frame
-    imgPanel.configure(image=imgR)
-    GUI.after(round(1000 / frames), lambda: updateGIF(count)) #error on this line
-
-# create tkinter instance
-GUI = tk.Tk()
-
-# set basic properties
-GUI.geometry("500x500")
-GUI.title("C0mput3r Gam3")
-
-# initilise elements
-
-# render image
-currPath = os.path.os.getcwd()
 if os.name == "nt":
-    path = currPath + '\\assets\\mrhousemoving.gif'
+    file: str = currPath + "\\assets\\mrhouse2.png" # put image here
 else:
-    path = currPath + '/assets/mrhousemoving.gif'
-print(path)
-#img = ImageTk.PhotoImage(Image.open(path + "\\assets\\mrhouse2.png"))
+    file: str = currPath + "/assets"
 
-imgPanel = tk.Label(GUI)
 
-imgData = Image.open(path)
-# frames = []
-# frames.append(ImageTk.PhotoImage(imgData.copy()))
-# print(frames)
+class GUI(tk.Tk):
+    def __init__(self) -> None:
+        super().__init__()
+        # edit root window properties
+        self.title("c0mput3er")
+        self.geometry("500x500")
 
-frames = imgData.n_frames
+        # initilise components
+        self.canvas = Canvas(self, width=500, height=500) # set to window dimensions
 
-img = [PhotoImage(file=path,format = f'gif -index {i}') for i in range(frames)]
-#imgResized = img.resize((300, 205))
+    def renderComponents(self):
+        img = PhotoImage(file=file)
+        self.canvas.create_image(20, 20, image=img)
 
-count = 0
+    def drawComponents(self):
+        self.canvas.pack()
 
-updateGIF(count)
+    def start(self):
+        self.mainloop()
+        #print("hi")
 
-imgPanel.pack(side = "bottom", fill = "both", expand = "yes")
 
-GUI.mainloop()
+if __name__ == "__main__":
+    App = GUI()
+    App.renderComponents()
+    App.drawComponents()
+    App.start()
+
 
 
