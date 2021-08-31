@@ -9,7 +9,7 @@ def print_str(input: str) -> str:
     return input
 
 # just the introduction
-def initBios() -> None:
+def _init_bios() -> None:
     print_str("......... \n")
     print_str("Oracle Terminal ")
     print_str("-> ")
@@ -22,11 +22,11 @@ def initBios() -> None:
         print_str("=")
     print_str("=>] \n")
     print_str("Reboot requested... \n")
-    reboot()
+    _reboot()
 
     print_str("System reboot successful. \n Welcome user. \n")
 
-def reboot() -> None:
+def _reboot() -> None:
     print_str("***SYSTEM:: REBOOT INITIATED*** \n\n\n")
     if os.name == "nt":
         os.system('cls')

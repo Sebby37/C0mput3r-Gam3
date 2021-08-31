@@ -25,12 +25,12 @@ class GUI(tk.Tk):
         # initilise components
         self.canvas = Canvas(self, width=500, height=500) # set to window dimensions
 
-    def _rendercomponents(self) -> None:
+    def _render_components(self) -> None:
         self.img = ImageTk.PhotoImage(Image.open(file))
         #self.imgR = self.img.resize((400, 400), Image.ANTIALIAS)
         self.canvas.create_image(0,0, image=self.img, anchor=NW)
 
-    def _drawcomponents(self) -> None:
+    def _draw_components(self) -> None:
         self.canvas.pack()
 
     def _start(self) -> None:

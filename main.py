@@ -13,7 +13,7 @@ import GUI
 
 
 # Main #
-mf.initBios()
+mf._init_bios()
 
 
 
