@@ -1,15 +1,18 @@
-# core 'system' functions
+# Core 'system' functions
 import os
+import tkinter as tk
 from time import sleep
 
-def printStr(input: str) -> str:
+# Prints a string one character at a time with a specific interval
+def printStr(input, interval = 0.02, newline = False):
     for c in input:
-        sleep(0.02)
+        sleep(interval)
         print(c, end='')
-    return input
+    if newline:
+        print("")
 
-# just the introduction
-def initBios() -> None:
+# Just the introduction
+def initBios():
     printStr("......... \n")
     printStr("Oracle Terminal ")
     printStr("-> ")
@@ -26,7 +29,7 @@ def initBios() -> None:
 
     printStr("System reboot successful. \n Welcome user. \n")
 
-def reboot() -> None:
+def reboot():
     printStr("***SYSTEM:: REBOOT INITIATED*** \n\n\n")
     if os.name == "nt":
         os.system('cls')
