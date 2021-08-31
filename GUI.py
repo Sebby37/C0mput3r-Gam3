@@ -3,55 +3,31 @@ import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
 
+# Wrapping the GIF Image in a class, many variables could be removed as this was just a direct translation of some previous code to a class
+class GifImage(tk.Label):
+    def __init__(self, master, path):
+        super().__init__(master)
+        self.image_data = Image.open(path)
+        self.frames = self.image_data.n_frames
+        self.img = [PhotoImage(file = path, format = f'gif -index {i}') for i in range(self.frames)]
+        self.count = 0
+        self._updateGIF()
+    def _updateGIF(self):
+        imgR = self.img[self.count]
+        self.count += 1
+        if self.count == self.frames:
+            self.count = 0
+        self.configure(image=imgR)
+        self.master.after(round(1000 / self.frames), self._updateGIF) # This gif refresh rate solution needs to be better, perhaps use https://stackoverflow.com/a/53365469/14128844
 
-# TODO:
-# Put into class
-
-# functions
-def updateGIF(count) -> None:  
-    imgR = img[count]
-    count += 1
-    if count == frames:
-        count = 0 # reset to first frame
-    imgPanel.configure(image=imgR)
-    GUI.after(round(1000 / frames), lambda: updateGIF(count)) #error on this line
-
-# create tkinter instance
+# Create tkinter instance
 GUI = tk.Tk()
-
-# set basic properties
 GUI.geometry("500x500")
 GUI.title("C0mput3r Gam3")
 
-# initilise elements
+# Image
+imag = GifImage(GUI, "assets\\mrhousemoving.gif")
+imag.pack(side = "bottom", fill = "both", expand = "yes")
 
-# render image
-currPath = os.path.os.getcwd()
-if os.name == "nt":
-    path = currPath + '\\assets\\mrhousemoving.gif'
-else:
-    path = currPath + '/assets/mrhousemoving.gif'
-print(path)
-#img = ImageTk.PhotoImage(Image.open(path + "\\assets\\mrhouse2.png"))
-
-imgPanel = tk.Label(GUI)
-
-imgData = Image.open(path)
-# frames = []
-# frames.append(ImageTk.PhotoImage(imgData.copy()))
-# print(frames)
-
-frames = imgData.n_frames
-
-img = [PhotoImage(file=path,format = f'gif -index {i}') for i in range(frames)]
-#imgResized = img.resize((300, 205))
-
-count = 0
-
-updateGIF(count)
-
-imgPanel.pack(side = "bottom", fill = "both", expand = "yes")
-
+# Running the tkinter instance
 GUI.mainloop()
-
-
