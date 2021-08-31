@@ -4,15 +4,17 @@ from tkinter import *
 from PIL import ImageTk, Image
 
 
+# TODO:
+# Put into class
+
 # functions
 def updateGIF(count) -> None:  
-    for i in range(100):  
-        imgR = img[count]
-        count += 1
-        if count == frames:
-            count = 0 # reset to first frame
-        imgPanel.configure(image=imgR)
-    #GUI.after(1000, updateGIF(count)) #error on this line
+    imgR = img[count]
+    count += 1
+    if count == frames:
+        count = 0 # reset to first frame
+    imgPanel.configure(image=imgR)
+    GUI.after(round(1000 / frames), lambda: updateGIF(count)) #error on this line
 
 # create tkinter instance
 GUI = tk.Tk()
@@ -24,8 +26,11 @@ GUI.title("C0mput3r Gam3")
 # initilise elements
 
 # render image
-currPath = os.path.abspath(os.getcwd())
-path = currPath + '\\assets\\mrhousemoving.gif'
+currPath = os.path.os.getcwd()
+if os.name == "nt":
+    path = currPath + '\\assets\\mrhousemoving.gif'
+else:
+    path = currPath + '/assets/mrhousemoving.gif'
 print(path)
 #img = ImageTk.PhotoImage(Image.open(path + "\\assets\\mrhouse2.png"))
 
@@ -39,9 +44,7 @@ imgData = Image.open(path)
 frames = imgData.n_frames
 
 img = [PhotoImage(file=path,format = f'gif -index {i}') for i in range(frames)]
-
-print("..")
-print(img[0])
+#imgResized = img.resize((300, 205))
 
 count = 0
 

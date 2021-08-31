@@ -1,6 +1,5 @@
 # core 'system' functions
 import os
-import tkinter as tk
 from time import sleep
 
 def printStr(input: str) -> str:
