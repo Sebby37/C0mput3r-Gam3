@@ -1,6 +1,9 @@
 import os
 import tkinter as tk
 from tkinter import Canvas, PhotoImage
+from tkinter.constants import NW
+from tkinter import *
+from PIL import ImageTk, Image
 
 
 # get path
@@ -23,8 +26,8 @@ class GUI(tk.Tk):
         self.canvas = Canvas(self, width=500, height=500) # set to window dimensions
 
     def renderComponents(self):
-        img = PhotoImage(file=file)
-        self.canvas.create_image(20, 20, image=img)
+        self.img = ImageTk.PhotoImage(Image.open(file))
+        self.canvas.create_image(0,0, image=self.img, anchor=NW)
 
     def drawComponents(self):
         self.canvas.pack()
