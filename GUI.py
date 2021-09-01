@@ -5,7 +5,6 @@ from tkinter.constants import NW
 from tkinter import *
 from PIL import ImageTk, Image
 
-
 # get path
 currPath: str = os.getcwd()
 
@@ -14,13 +13,15 @@ if os.name == "nt":
 else:
     file: str = currPath + "/assets/mantest.png"
 
-
 class GUI(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
         # edit root window properties
         self.title("c0mput3er")
         self.geometry("500x500")
+
+        # position window
+        self.eval("tk::PlaceWindow . center")
 
         # initilise components
         self.canvas = Canvas(self, width=500, height=500) # set to window dimensions
@@ -38,11 +39,4 @@ class GUI(tk.Tk):
         #print("hi")
 
 
-if __name__ == "__main__":
-    App = GUI()
-    App._rendercomponents()
-    App._drawcomponents()
-    App._start()
-
-
-
+#if __name__ == "__main__":
